@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://tmluhmaa7yfd"]
+
+[ext_resource type="PackedScene" uid="uid://v12rj2w2frxo" path="res://character_body_2d.tscn" id="1_wlvk4"]
+[ext_resource type="Script" uid="uid://dbbhe0shv58fn" path="res://Levels/camera_2d.gd" id="2_wmi5p"]
+
+[node name="GameLevel" type="Node2D" unique_id=153290294]
+position = Vector2(1, 1)
+
+[node name="CharacterBody2D" parent="." unique_id=591965135 instance=ExtResource("1_wlvk4")]
+position = Vector2(544, 305)
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=1965936773]
+script = ExtResource("2_wmi5p")
