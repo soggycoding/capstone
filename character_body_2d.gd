@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @onready var animationplayer: AnimationPlayer = $Sprite2D/AnimationPlayer
 
-const max_speed: int = 55
+const max_speed: int = 30
 const acceleration: int = 5
 const friction: int = 8
 
