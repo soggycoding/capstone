@@ -273,7 +273,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lhvu3"]
-size = Vector2(3, 11)
+size = Vector2(4, 10)
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=591965135]
 script = ExtResource("1_ij6vw")
@@ -291,5 +291,5 @@ speed_scale = 0.2
 script = ExtResource("3_ghijl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1561236940]
-position = Vector2(1, -1)
+position = Vector2(1, -2)
 shape = SubResource("RectangleShape2D_lhvu3")

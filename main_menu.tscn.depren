@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://cbui2ecxubk3b"]
+
+[ext_resource type="Script" uid="uid://e7qy1s2nhds1" path="res://main_menu.gd" id="1_7vrkn"]
+[ext_resource type="Texture2D" uid="uid://req1mhk0oogp" path="res://scenes/menus/base_background/Menu1.png" id="2_fu7sn"]
+[ext_resource type="Texture2D" uid="uid://c4uow3ue74o2i" path="res://scenes/menus/base_background/Menu2.png" id="3_glbon"]
+[ext_resource type="Texture2D" uid="uid://dbipyfj7yrgnm" path="res://scenes/menus/base_background/Menu3.png" id="4_nlkkf"]
+[ext_resource type="Texture2D" uid="uid://c82l33dg23llm" path="res://scenes/menus/base_background/Menu4.png" id="5_qe12f"]
+
+[sub_resource type="Animation" id="Animation_8qtwp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_fu7sn")]
+}
+
+[sub_resource type="Animation" id="Animation_dy7ct"]
+resource_name = "menu_loop"
+length = 2.0333333
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_fu7sn"), ExtResource("3_glbon"), ExtResource("4_nlkkf"), ExtResource("5_qe12f"), ExtResource("2_fu7sn")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0o4t1"]
+_data = {
+&"RESET": SubResource("Animation_8qtwp"),
+&"menu_loop": SubResource("Animation_dy7ct")
+}
+
+[node name="MainMenu" type="Control" unique_id=978670031]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7vrkn")
+menu_image_1 = null
+menu_image_2 = null
+menu_image_3 = null
+menu_image_4 = null
+
+[node name="MenuAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1237135606]
+libraries/ = SubResource("AnimationLibrary_0o4t1")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1087747379]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_fu7sn")
+
+[node name="NewGameButton" type="Button" parent="." unique_id=43762646]
+layout_mode = 0
+offset_left = 124.0
+offset_top = 344.0
+offset_right = 263.0
+offset_bottom = 376.0
+text = "New Game"
+
+[node name="ContinueButton" type="Button" parent="." unique_id=1801149961]
+layout_mode = 0
+offset_left = 121.0
+offset_top = 397.0
+offset_right = 258.0
+offset_bottom = 422.0
+text = "Continue"
+
+[node name="SettingsButton" type="Button" parent="." unique_id=1524826924]
+layout_mode = 0
+offset_left = 124.0
+offset_top = 442.0
+offset_right = 259.0
+offset_bottom = 467.0
+text = "Settings"
+
+[node name="ExitButton" type="Button" parent="." unique_id=2008418089]
+layout_mode = 0
+offset_left = 123.0
+offset_top = 484.0
+offset_right = 181.0
+offset_bottom = 515.0
+text = "Exit"
