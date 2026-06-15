@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://v12rj2w2frxo"]
 
-[ext_resource type="Script" uid="uid://cadd4ethih6gd" path="res://character_body_2d.gd" id="1_ij6vw"]
+[ext_resource type="Script" uid="uid://cadd4ethih6gd" path="res://Scripts/character_body_2d.gd" id="1_ij6vw"]
 [ext_resource type="Texture2D" uid="uid://dqeokrfng22cn" path="res://Sprites/idle-walk-UDLR-export.png" id="2_ij6vw"]
-[ext_resource type="Script" uid="uid://dxmlq57yrncrw" path="res://animation_player.gd" id="3_ghijl"]
+[ext_resource type="Script" uid="uid://dxmlq57yrncrw" path="res://Scripts/animation_player.gd" id="3_ghijl"]
 
 [sub_resource type="Animation" id="Animation_ij6vw"]
 length = 0.001

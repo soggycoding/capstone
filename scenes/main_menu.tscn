@@ -1,0 +1,198 @@
+[gd_scene format=3 uid="uid://cbui2ecxubk3b"]
+
+[ext_resource type="Script" uid="uid://e7qy1s2nhds1" path="res://scenes/main_menu.gd" id="1_rtw2f"]
+[ext_resource type="Texture2D" uid="uid://dvih082r6rj1h" path="res://scenes/menus/base_background/Base_bg1.png" id="2_oa1go"]
+[ext_resource type="Texture2D" uid="uid://pl36tb3jb6ws" path="res://scenes/menus/base_background/Base_bg2.png" id="3_tbmy8"]
+[ext_resource type="Texture2D" uid="uid://di1ck31184gv3" path="res://scenes/menus/base_background/Base_bg3.png" id="4_jk1qb"]
+[ext_resource type="Texture2D" uid="uid://by1clp623q7i5" path="res://scenes/menus/base_background/Base_bg4.png" id="5_5dd4i"]
+[ext_resource type="Texture2D" uid="uid://ctqyygpqnxvot" path="res://scenes/menus/base_background/Base_bg.png" id="6_lgwnu"]
+[ext_resource type="PackedScene" uid="uid://b4tghic7cdqke" path="res://scenes/color_rect.tscn" id="7_oa1go"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rtw2f"]
+load_path = "res://.godot/imported/Main Menu1.png-dbeeaa9ed0dbd7f68bfd8a503bbf4c56.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_oa1go"]
+load_path = "res://.godot/imported/Main Menu2.png-f697fce92be27952cbedcd7597578ab1.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tbmy8"]
+load_path = "res://.godot/imported/Main Menu3.png-df74ae81ab6d2a65efd56488dddb746e.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jk1qb"]
+load_path = "res://.godot/imported/Main Menu4.png-3abf0cb2cc820b165a97829a265350c1.ctex"
+
+[sub_resource type="Animation" id="Animation_8qtwp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_oa1go")]
+}
+
+[sub_resource type="Animation" id="Animation_0k4wn"]
+resource_name = "grass_animation"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_oa1go"), ExtResource("3_tbmy8"), ExtResource("4_jk1qb"), ExtResource("5_5dd4i"), ExtResource("6_lgwnu")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0o4t1"]
+_data = {
+&"RESET": SubResource("Animation_8qtwp"),
+&"grass_animation": SubResource("Animation_0k4wn")
+}
+
+[sub_resource type="Animation" id="Animation_jk1qb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("color_rect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_oa1go"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("color_rect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0.40069774, 0.40069774, 0.40069768, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_tbmy8"]
+resource_name = "fade_out"
+length = 1.3333334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("color_rect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jk1qb"]
+_data = {
+&"RESET": SubResource("Animation_jk1qb"),
+&"fade_in": SubResource("Animation_oa1go"),
+&"fade_out": SubResource("Animation_tbmy8")
+}
+
+[node name="MainMenu" type="Control" unique_id=978670031]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rtw2f")
+menu_image_1 = SubResource("CompressedTexture2D_rtw2f")
+menu_image_2 = SubResource("CompressedTexture2D_oa1go")
+menu_image_3 = SubResource("CompressedTexture2D_tbmy8")
+menu_image_4 = SubResource("CompressedTexture2D_jk1qb")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1524955614]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_oa1go")
+
+[node name="UIOverlay" type="TextureRect" parent="." unique_id=2091340152]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NewGameButton" type="Button" parent="." unique_id=43762646]
+layout_mode = 0
+offset_left = 124.0
+offset_top = 344.0
+offset_right = 263.0
+offset_bottom = 376.0
+shortcut_feedback = false
+shortcut_in_tooltip = false
+flat = true
+autowrap_trim_flags = 0
+
+[node name="ContinueButton" type="Button" parent="." unique_id=1801149961]
+layout_mode = 0
+offset_left = 121.0
+offset_top = 397.0
+offset_right = 258.0
+offset_bottom = 422.0
+flat = true
+
+[node name="SettingsButton" type="Button" parent="." unique_id=1524826924]
+layout_mode = 0
+offset_left = 124.0
+offset_top = 442.0
+offset_right = 259.0
+offset_bottom = 467.0
+flat = true
+
+[node name="ExitButton" type="Button" parent="." unique_id=2008418089]
+layout_mode = 0
+offset_left = 124.0
+offset_top = 489.0
+offset_right = 182.0
+offset_bottom = 520.0
+flat = true
+
+[node name="MenuAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1237135606]
+deterministic = true
+libraries/ = SubResource("AnimationLibrary_0o4t1")
+playback_default_blend_time = 1.0
+speed_scale = 2.0
+
+[node name="fade_transition" type="CanvasLayer" parent="." unique_id=251626583]
+visible = false
+
+[node name="color_rect" parent="fade_transition" unique_id=677512576 instance=ExtResource("7_oa1go")]
+tooltip_auto_translate_mode = 1
+
+[node name="fade_timer" type="Timer" parent="fade_transition" unique_id=1524061492]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="fade_transition" unique_id=1941725886]
+libraries/ = SubResource("AnimationLibrary_jk1qb")
+speed_scale = 0.5
+movie_quit_on_finish = true
+
+[connection signal="timeout" from="fade_transition/fade_timer" to="." method="_on_fade_timer_timeout"]
