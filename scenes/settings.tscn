@@ -11,56 +11,52 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5p8wc")
 
-[node name="BackButton" type="Button" parent="." unique_id=274861898]
-layout_mode = 0
-offset_left = 490.0
-offset_top = 590.0
-offset_right = 604.0
-offset_bottom = 632.0
-text = "back"
-
-[node name="AudioButton" type="Button" parent="." unique_id=2101488991]
-layout_mode = 0
-offset_left = 515.0
-offset_top = 316.0
-offset_right = 567.0
-offset_bottom = 347.0
-text = "audio"
-
-[node name="BrightnessButton" type="Button" parent="." unique_id=863126374]
-layout_mode = 0
-offset_left = 495.0
-offset_top = 150.0
-offset_right = 585.0
-offset_bottom = 181.0
-text = "brightness"
-
-[node name="FramerateButton" type="Button" parent="." unique_id=1286602540]
-layout_mode = 0
-offset_left = 498.0
-offset_top = 73.0
-offset_right = 585.0
-offset_bottom = 104.0
-text = "framerate"
-
-[node name="SubtitleButton" type="Button" parent="." unique_id=263447676]
-layout_mode = 0
-offset_left = 509.0
-offset_top = 231.0
-offset_right = 576.0
-offset_bottom = 262.0
-text = "subtitle"
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1961345478]
-visible = false
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=228638330]
+[node name="BrightnessOverlay" type="ColorRect" parent="." unique_id=1480103685]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Timer" type="Timer" parent="CanvasLayer" unique_id=1383248552]
+[node name="BackButton" type="Button" parent="." unique_id=274861898]
+layout_mode = 0
+offset_left = 566.0
+offset_top = 588.0
+offset_right = 680.0
+offset_bottom = 630.0
+text = "back"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer" unique_id=1888377362]
+[node name="FramerateSlider" type="HSlider" parent="." unique_id=12909020]
+layout_mode = 0
+offset_left = 423.0
+offset_top = 108.0
+offset_right = 773.0
+offset_bottom = 158.0
+value = 50.0
+
+[node name="BrightnessSlider" type="HSlider" parent="." unique_id=367254719]
+layout_mode = 0
+offset_left = 421.0
+offset_top = 193.0
+offset_right = 771.0
+offset_bottom = 243.0
+value = 50.0
+
+[node name="AudioSlider" type="HSlider" parent="." unique_id=117663969]
+layout_mode = 0
+offset_left = 422.0
+offset_top = 290.0
+offset_right = 772.0
+offset_bottom = 340.0
+value = 50.0
+
+[node name="SubtitleButton" type="Button" parent="." unique_id=263447676]
+layout_mode = 0
+offset_left = 563.0
+offset_top = 401.0
+offset_right = 668.0
+offset_bottom = 460.0
+toggle_mode = true
+action_mode = 0
+text = "subtitle"

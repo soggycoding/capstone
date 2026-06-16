@@ -1,47 +1,106 @@
 extends CharacterBody2D
 
-@onready var animationplayer: AnimationPlayer = $Sprite2D/AnimationPlayer
+@onready var walk_sprite = $WalkSprite
+@onready var run_sprite = $RunSprite
+@onready var noise_bar = $CanvasLayer/NoiseBar
+@onready var noise_label = $CanvasLayer/NoiseLabel
 
 const max_speed: int = 30
-const acceleration: int = 5
+const sprint_speed: int = 50
+const crouch_speed: int = 10
+const acceleration: int = 4
 const friction: int = 8
+
+var noise_level: float = 0.0
+var max_noise: float = 100.0
+var current_speed: int = max_speed
+var last_direction: Vector2 = Vector2.DOWN  # Track last direction for idle
 
 func _physics_process(delta: float) -> void:
 	var input = Vector2(
 		Input.get_action_raw_strength("ui_right") - Input.get_action_raw_strength("ui_left"),
-		Input.get_action_raw_strength("ui_down") - Input.get_action_strength("ui_up")
+		Input.get_action_raw_strength("ui_down") - Input.get_action_raw_strength("ui_up")
 	).normalized()
 	
-	if input != Vector2.ZERO:
-		play_walk_animation(input)
-		animationplayer.speed_scale	 = (velocity / max_speed).length() + 0.5
-	else: 
-		play_idle_animation()
+	var is_sprinting = Input.is_action_pressed("sprint") and input != Vector2.ZERO
 	
+	# Update last direction if moving
+	if input != Vector2.ZERO:
+		last_direction = input
+	if is_sprinting:
+		max_noise = 100.0  # Sprint fills to 100
+	
+	# SHOW/HIDE SPRITES BASED ON STATE
+	if is_sprinting:
+		show_sprite("run")
+		current_speed = sprint_speed
+		update_noise(delta, 20)  # Sprint: +30/sec (reaches 100 in 3s)
+		if input != Vector2.ZERO:
+			play_movement_animation(input, "run")
+	elif input != Vector2.ZERO:
+		show_sprite("walk")
+		current_speed = max_speed
+		update_noise(delta, -2)   # Walk: +2/sec (very slow, won't spike)
+		play_movement_animation(input, "walk")
+	else:
+		show_sprite("walk")
+		update_noise(delta, -10)  # Idle: -20/sec (smooth cooldown)
+		play_idle_animation(last_direction)
+	
+	noise_level = clamp(noise_level, 0, max_noise)
+	
+	if noise_level >= 100:
+		trigger_siren_head_alert()
+		
 	var lerp_weight = delta * (acceleration if input else friction)
-	velocity = lerp(velocity, input * max_speed, lerp_weight)
+	velocity = lerp(velocity, input * current_speed, lerp_weight)
 	
 	move_and_slide()
-	
-func play_walk_animation(direction: Vector2) -> void:
-	if direction.y < 0:
-		animationplayer.play("up")
-	elif direction.y > 0:
-		animationplayer.play("down")
-	elif direction.x < 0:
-		animationplayer.play("left")
-	elif direction.x > 0:
-		animationplayer.play("right")
+	update_noise_ui()
 
-func play_idle_animation() -> void:
-	var current_anim = animationplayer.current_animation
+func show_sprite(state: String) -> void:
+	walk_sprite.visible = (state == "walk")
+	run_sprite.visible = (state == "run")
+
+func play_movement_animation(direction: Vector2, state: String) -> void:
+	var sprite = run_sprite if state == "run" else walk_sprite
 	
-	match current_anim:
-		"up":
-			animationplayer.play("up-idle")
-		"down":
-			animationplayer.play("down-idle")
-		"left":
-			animationplayer.play("left-idle")
-		"right":
-			animationplayer.play("right-idle")
+	if direction.y < 0:
+		sprite.play("run_up" if state == "run" else "walk_up")
+	elif direction.y > 0:
+		sprite.play("run_down" if state == "run" else "walk_down")
+	elif direction.x < 0:
+		sprite.play("run_left" if state == "run" else "walk_left")
+	elif direction.x > 0:
+		sprite.play("run_right" if state == "run" else "walk_right")
+
+func play_idle_animation(direction: Vector2) -> void:
+	var sprite = walk_sprite
+	
+	if direction.y < 0:
+		sprite.play("idle_up")
+	elif direction.y > 0:
+		sprite.play("idle_down")
+	elif direction.x < 0:
+		sprite.play("idle_left")
+	elif direction.x > 0:
+		sprite.play("idle_right")
+
+func update_noise(delta: float, noise_rate: float) -> void:
+	noise_level += noise_rate * delta
+
+func trigger_siren_head_alert() -> void:
+	print("SIREN HEAD ALERT!")
+
+func update_noise_ui() -> void:
+	"""Update noise meter display"""
+	noise_bar.value = noise_level
+	noise_label.text = str(int(noise_level))
+	
+	# Change color based on noise level
+	if noise_level > 70:
+		noise_bar.modulate = Color.RED
+	elif noise_level > 40:
+		noise_bar.modulate = Color.YELLOW
+	else:
+		noise_bar.modulate = Color.GREEN
