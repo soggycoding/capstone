@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dqeokrfng22cn" path="res://Sprites/character/walk_sprite.png" id="2_ij6vw"]
 [ext_resource type="Script" uid="uid://dxmlq57yrncrw" path="res://Scripts/animation_player.gd" id="3_ghijl"]
 [ext_resource type="Texture2D" uid="uid://delbg4rhn8tmc" path="res://Sprites/character/run_sprite.png" id="4_ph5yk"]
+[ext_resource type="Texture2D" uid="uid://cshs58u3lfap4" path="res://Sprites/light.png" id="5_wneh1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ph5yk"]
 atlas = ExtResource("2_ij6vw")
@@ -987,3 +988,7 @@ speed_scale = 0.5
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1561236940]
 position = Vector2(0.5, -1)
 shape = SubResource("RectangleShape2D_lhvu3")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=440698280]
+visible = false
+texture = ExtResource("5_wneh1")

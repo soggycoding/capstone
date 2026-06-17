@@ -1,10 +1,12 @@
 extends CharacterBody2D
 
+@onready var pause_menu = get_parent().get_node("HUDLayer/PauseMenu")
 @onready var walk_sprite = $WalkSprite
 @onready var run_sprite = $RunSprite
 @onready var noise_bar = $CanvasLayer/NoiseBar
 @onready var noise_label = $CanvasLayer/NoiseLabel
 
+var is_paused = false
 const max_speed: int = 30
 const sprint_speed: int = 50
 const crouch_speed: int = 10
@@ -17,6 +19,12 @@ var current_speed: int = max_speed
 var last_direction: Vector2 = Vector2.DOWN  # Track last direction for idle
 
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("ui_cancel"):
+		toggle_pause()
+	
+	if get_tree().paused:
+		return
+		
 	var input = Vector2(
 		Input.get_action_raw_strength("ui_right") - Input.get_action_raw_strength("ui_left"),
 		Input.get_action_raw_strength("ui_down") - Input.get_action_raw_strength("ui_up")
@@ -44,7 +52,7 @@ func _physics_process(delta: float) -> void:
 		play_movement_animation(input, "walk")
 	else:
 		show_sprite("walk")
-		update_noise(delta, -10)  # Idle: -20/sec (smooth cooldown)
+		update_noise(delta, -20)  # Idle: -20/sec (smooth cooldown)
 		play_idle_animation(last_direction)
 	
 	noise_level = clamp(noise_level, 0, max_noise)
@@ -104,3 +112,7 @@ func update_noise_ui() -> void:
 		noise_bar.modulate = Color.YELLOW
 	else:
 		noise_bar.modulate = Color.GREEN
+		
+func toggle_pause() -> void:
+	get_tree().paused = !get_tree().paused
+	pause_menu.visible = get_tree().paused

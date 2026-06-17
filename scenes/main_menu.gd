@@ -7,6 +7,7 @@ extends Control
 @onready var base_background = $TextureRect
 @onready var ui_overlay = $UIOverlay
 @onready var menu_animator = $MenuAnimationPlayer
+@onready var pointlight = $PointLight2D
 
 # Button UI images
 @export var menu_image_1 = preload("res://scenes/menus/menu_buttons/Main Menu1.png")
@@ -17,6 +18,7 @@ extends Control
 
 
 func _ready() -> void:
+	pointlight = false
 	var empty_theme = Theme.new()
 	
 	for btn in [new_game_btn, continue_btn, settings_btn, exit_btn]:
@@ -94,4 +96,4 @@ func _on_exit_pressed() -> void:
 
 
 func _on_fade_timer_timeout() -> void:
-	get_tree().change_scene_to_file("res://Levels/game_level.tscn")
+	get_tree().change_scene_to_file("res://Levels/Lobby/lobby.tscn")
