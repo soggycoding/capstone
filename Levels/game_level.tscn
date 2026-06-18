@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://tmluhmaa7yfd"]
 
+[ext_resource type="Script" uid="uid://c4wirftury5au" path="res://Levels/game_level.gd" id="1_afl82"]
 [ext_resource type="PackedScene" uid="uid://v12rj2w2frxo" path="res://Scripts/character_body_2d.tscn" id="1_wlvk4"]
 [ext_resource type="Texture2D" uid="uid://c8gc6n4mq5wqn" path="res://Sprites/Ground-Map.png" id="1_wmi5p"]
 [ext_resource type="Texture2D" uid="uid://dl32q3aba0aqb" path="res://Sprites/houses.png" id="2_34xkg"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_ekbqq"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="4_34xkg"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="5_xk4lf"]
+[ext_resource type="PackedScene" uid="uid://c2h05th8r53n7" path="res://Enemies/weeping_angel.tscn" id="7_xk4lf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xk4lf"]
 texture = ExtResource("1_wmi5p")
@@ -6582,8 +6584,12 @@ sources/1 = SubResource("TileSetAtlasSource_afl82")
 [sub_resource type="Resource" id="Resource_afl82"]
 script = ExtResource("5_xk4lf")
 
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_afl82"]
+b = Vector2(1, 628)
+
 [node name="GameLevel" type="Node2D" unique_id=153290294]
 position = Vector2(35, 17)
+script = ExtResource("1_afl82")
 
 [node name="TileMap" type="TileMap" parent="." unique_id=30714155]
 texture_filter = 1
@@ -6630,5 +6636,25 @@ dead_zone_height = 0.239
 draw_limits = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1851318733]
+visible = false
 position = Vector2(1, 1)
 color = Color(0.043039158, 0.04303915, 0.04303915, 1)
+
+[node name="weeping_angel" parent="." unique_id=1073840754 instance=ExtResource("7_xk4lf")]
+position = Vector2(700, 590)
+
+[node name="SpawnPoint1" type="Marker2D" parent="." unique_id=967811418]
+position = Vector2(702, 78)
+
+[node name="SpawnPoint2" type="Marker2D" parent="." unique_id=2097815929]
+position = Vector2(699, 586)
+
+[node name="SpawnPoint3" type="Marker2D" parent="." unique_id=916065860]
+position = Vector2(454, 71)
+
+[node name="ActivationZone" type="Area2D" parent="." unique_id=432849565]
+position = Vector2(319, -7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActivationZone" unique_id=25009554]
+position = Vector2(0, -1)
+shape = SubResource("SegmentShape2D_afl82")

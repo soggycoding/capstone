@@ -19,6 +19,7 @@ var current_speed: int = max_speed
 var last_direction: Vector2 = Vector2.DOWN  # Track last direction for idle
 
 func _physics_process(delta: float) -> void:
+	add_to_group("player")
 	if Input.is_action_just_pressed("ui_cancel"):
 		toggle_pause()
 	
