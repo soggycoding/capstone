@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://c0ks6g6ia7g4n"]
+
+[ext_resource type="Script" uid="uid://cmq4cvg7w124d" path="res://Enemies/shadow_patrol.gd" id="1_csqxg"]
+[ext_resource type="Texture2D" uid="uid://dtanffh7qndod" path="res://Sprites/slenderman-spritesheet.png" id="2_8clge"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujep8"]
+atlas = ExtResource("2_8clge")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1v18d"]
+atlas = ExtResource("2_8clge")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c6f1i"]
+atlas = ExtResource("2_8clge")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eoy0w"]
+atlas = ExtResource("2_8clge")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfsa4"]
+atlas = ExtResource("2_8clge")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpq5s"]
+atlas = ExtResource("2_8clge")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0er4y"]
+atlas = ExtResource("2_8clge")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bhunq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujep8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1v18d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c6f1i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eoy0w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tfsa4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpq5s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0er4y")
+}],
+"loop": 1,
+"name": &"placeholder",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_riqys"]
+size = Vector2(5, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sn0t7"]
+size = Vector2(36, 44)
+
+[node name="shadow_patrol" type="CharacterBody2D" unique_id=1382559230]
+script = ExtResource("1_csqxg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1543108109]
+sprite_frames = SubResource("SpriteFrames_bhunq")
+animation = &"placeholder"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D" unique_id=929297167]
+visible = false
+position = Vector2(-0.5, -3)
+shape = SubResource("RectangleShape2D_riqys")
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=1641211809]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=381269610]
+visible = false
+position = Vector2(1, -3)
+shape = SubResource("RectangleShape2D_sn0t7")

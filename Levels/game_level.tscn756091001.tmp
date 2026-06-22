@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="5_xk4lf"]
 [ext_resource type="PackedScene" uid="uid://c2h05th8r53n7" path="res://Enemies/weeping_angel.tscn" id="7_xk4lf"]
 [ext_resource type="PackedScene" uid="uid://dmyrkv8nlmlmf" path="res://Enemies/slender_man.tscn" id="9_ese5x"]
-[ext_resource type="PackedScene" uid="uid://c0ks6g6ia7g4n" path="res://Enemies/shadow_patrol.tscn" id="10_3ty5n"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xk4lf"]
 texture = ExtResource("1_wmi5p")
@@ -6655,15 +6654,11 @@ position = Vector2(700, 587)
 position = Vector2(454, 71)
 
 [node name="ActivationZone" type="Area2D" parent="." unique_id=432849565]
-position = Vector2(570, 301)
+position = Vector2(-41, 3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActivationZone" unique_id=25009554]
-visible = false
-position = Vector2(-1, 0)
+position = Vector2(204, 299)
 shape = SubResource("RectangleShape2D_ese5x")
 
 [node name="slender_man" parent="." unique_id=822399685 instance=ExtResource("9_ese5x")]
 position = Vector2(454, 71)
-
-[node name="shadow_patrol" parent="." unique_id=1382559230 instance=ExtResource("10_3ty5n")]
-position = Vector2(76, 173)

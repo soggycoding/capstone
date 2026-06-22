@@ -2,8 +2,8 @@ extends CharacterBody2D
 
 @onready var sprite = $AnimatedSprite2D
 @onready var detection_area = $DetectionArea
-@export var patrol_speed = 20
-@export var chase_speed = 40
+@export var patrol_speed = 15
+@export var chase_speed = 30
 @export var detection_range = 300
 @export var vision_range = 200  # Add this!
 @export var look_angle = 45
