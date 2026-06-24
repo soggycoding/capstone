@@ -25,7 +25,7 @@ func _ready() -> void:
 		btn.modulate = Color(0.6, 0.6, 0.6)
 
 func load_level(level_num: int) -> void:
-	load_scene("res://Levels/Level%d.tscn" % level_num)
+	load_scene("res://Levels/level_%d.tscn" % level_num)
 
 func load_scene(scene_path: String) -> void:
 	$fade_transition.show()

@@ -2,11 +2,11 @@ extends CharacterBody2D
 
 @onready var sprite = $AnimatedSprite2D
 @onready var detection_area = $DetectionArea
-@export var patrol_speed = 30
-@export var chase_speed = 60
-@export var vision_range = 250
-@export var vision_angle = 60  # Cone width in degrees
-@export var patrol_zone_radius = 400  # Max distance from origin
+@export var patrol_speed = 20	
+@export var chase_speed = 30
+@export var vision_range = 100
+@export var vision_angle = 30  # Cone width in degrees
+@export var patrol_zone_radius = 150  # Max distance from origin
 
 var player: CharacterBody2D
 var current_speed = patrol_speed
@@ -44,16 +44,20 @@ func _physics_process(delta: float) -> void:
 	
 	# Check if player is in vision cone
 	if can_see_player():
-		state = "placeholder"
+		state = "chase"
 		current_speed = chase_speed
 		var direction = global_position.direction_to(player.global_position)
 		velocity = direction * current_speed
 		current_direction = direction
 		play_movement_animation(direction)
 	else:
-		state = "placeholder"
+		state = "patrol"
 		current_speed = patrol_speed
 		patrol_to_waypoints()
+	
+	# Rotate vision cone to face current direction
+	if has_node("VisionCone"):
+		$VisionCone.rotation = current_direction.angle()
 	
 	move_and_slide()
 
@@ -67,8 +71,7 @@ func can_see_player() -> bool:
 	
 	# Must be within vision cone
 	var direction_to_player = (player.global_position - global_position).normalized()
-	var my_facing = current_direction
-	var angle = my_facing.angle_to(direction_to_player)
+	var angle = current_direction.angle_to(direction_to_player)
 	angle = abs(angle)
 	
 	return angle < deg_to_rad(vision_angle)
@@ -77,13 +80,12 @@ func patrol_to_waypoints() -> void:
 	"""Move to waypoints in order"""
 	if waypoints.size() == 0:
 		velocity = Vector2.ZERO
-		play_idle_animation()
 		return
 	
 	var target = waypoints[current_waypoint]
 	var distance_to_waypoint = global_position.distance_to(target)
 	
-	if distance_to_waypoint < 20:
+	if distance_to_waypoint < 30:
 		# Reached waypoint, move to next
 		current_waypoint = (current_waypoint + 1) % waypoints.size()
 	
@@ -93,20 +95,15 @@ func patrol_to_waypoints() -> void:
 	play_movement_animation(direction)
 
 func play_movement_animation(direction: Vector2) -> void:
-	if direction.x < -0.3:
-		sprite.play("placeholder")
-	elif direction.x > 0.3:
-		sprite.play("placeholder")
-	elif direction.y < -0.3:
-		play_idle_animation()
-	elif direction.y > 0.3:
-		play_idle_animation()
-
-func play_idle_animation() -> void:
-	if current_direction.y < 0:
-		sprite.play("placeholder")
-	else:
-		sprite.play("placeholder")
+	"""Play animation based on movement direction (up, down, left, right)"""
+	if direction.y < -0.3:  # Moving up
+		sprite.play("up")
+	elif direction.y > 0.3:  # Moving down
+		sprite.play("down")
+	elif direction.x < -0.3:  # Moving left
+		sprite.play("left")
+	elif direction.x > 0.3:  # Moving right
+		sprite.play("right")
 
 func _on_detection_area_entered(area: Area2D) -> void:
 	pass

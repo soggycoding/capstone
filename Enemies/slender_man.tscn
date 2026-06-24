@@ -229,6 +229,7 @@ radius = 31.084562
 radius = 6.264982
 
 [node name="slender_man" type="CharacterBody2D" unique_id=822399685]
+visible = false
 script = ExtResource("1_ssw4t")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2131467098]

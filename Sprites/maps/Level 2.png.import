@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8gc6n4mq5wqn"
-path="res://.godot/imported/Ground-Map.png-1f9b711e9dc3ca8f615a46b36a1152c2.ctex"
+uid="uid://dlfkumcw312yg"
+path="res://.godot/imported/Level 2.png-bac7f0fef3283f06259573d7894574c7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Ground-Map.png"
-dest_files=["res://.godot/imported/Ground-Map.png-1f9b711e9dc3ca8f615a46b36a1152c2.ctex"]
+source_file="res://Sprites/maps/Level 2.png"
+dest_files=["res://.godot/imported/Level 2.png-bac7f0fef3283f06259573d7894574c7.ctex"]
 
 [params]
 
