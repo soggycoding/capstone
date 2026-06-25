@@ -991,22 +991,16 @@ position = Vector2(0.5, -1)
 shape = SubResource("RectangleShape2D_lhvu3")
 
 [node name="VisionCone" type="Node2D" parent="." unique_id=1956232426]
-position = Vector2(0, -8)
+position = Vector2(0, 1)
 
 [node name="flashlight" type="PointLight2D" parent="VisionCone" unique_id=994027599]
-position = Vector2(-215, 7)
+position = Vector2(-247, 1)
 scale = Vector2(0.8046874, 0.625)
+enabled = false
 color = Color(0.85882354, 0.6901961, 0.46666667, 1)
 texture = ExtResource("6_8e2c0")
 offset = Vector2(300, 0)
 
-[node name="Polygon2D" type="Polygon2D" parent="VisionCone" unique_id=523134717]
-visible = false
-position = Vector2(3, 8)
-color = Color(0.85882354, 0.6901961, 0.46666667, 1)
-polygon = PackedVector2Array(0, 0, 41, -10, 41, 16)
-
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=440698280]
-position = Vector2(0, -1)
 color = Color(0.85882354, 0.6901961, 0.46666667, 1)
 texture = ExtResource("5_wneh1")

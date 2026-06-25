@@ -87,11 +87,7 @@ func _physics_process(delta: float) -> void:
 	update_noise_ui()
 
 func update_flashlight_position() -> void:
-	"""Point flashlight in direction player is facing"""
-	# Position flashlight ahead of player in facing direction
 	$VisionCone.global_position = global_position + last_direction * 30
-	
-	# Rotate to face direction (add offset if cone doesn't point right by default)
 	$VisionCone.rotation = last_direction.angle()
 
 func show_sprite(state: String) -> void:
